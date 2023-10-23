@@ -1,0 +1,24 @@
+Id: 4
+Marca: Marca
+Modello: Modello
+Anno: 2000
+Targa: AAAAA
+Prezzo: 33000.99
+TipoCarburante: Benzina
+---
+Id: 5
+Marca: Marca
+Modello: Modello
+Anno: 2000
+Targa: AAB
+Prezzo: 33000.99
+TipoCarburante: Benzina
+---
+Id: 1
+Marca: Marca
+Modello: Modello
+Anno: 2000
+Targa: YYY
+Prezzo: 33000.99
+TipoCarburante: Benzina
+---
