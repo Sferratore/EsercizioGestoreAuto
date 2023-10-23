@@ -6,19 +6,3 @@ Targa: SJFNIDJN
 Prezzo: 44.44
 TipoCarburante: Diesel
 ---
-Id: 3
-Marca: AAAA
-Modello: BBBB
-Anno: 1999
-Targa: CCCC
-Prezzo: 33.33
-TipoCarburante: DDDD
----
-Id: 4
-Marca: Marca3
-Modello: Modello3
-Anno: 1999
-Targa: AAABBB
-Prezzo: 5.1
-TipoCarburante: Benzina
----
