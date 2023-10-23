@@ -71,10 +71,43 @@ public class Menu {
 	private void modificaAuto() {
 		System.out.println("Menu modifica");
 		System.out.print("Inserisci targa: ");
-		g.modificaAuto(scanUser.next());
+		this.modificaAutoExpanded(g.cercaAutoPerTarga(scanUser.next()));
+	}
+	
+	private void modificaAutoExpanded(Auto a) {
 		
+		System.out.println("AUTO TROVATA: " + a);
+		System.out.println("1)Modifica Marca\n2)Modifica Modello\n3)Modifica Targa\n4)Modifica Prezzo\n5)Modifica Anno\n6)Modifica TipoCarburante\n0)Torna al menù precedente");
 		
-
+		switch (scanUser.nextInt()) {
+		case 1:
+			System.out.println("Nuova marca: ");
+			a.setMarca(scanUser.next());
+			break;
+		case 2:
+			System.out.println("Nuova modello: ");
+			a.setModello(scanUser.next());
+			break;
+		case 3:
+			System.out.println("Nuova targa: ");
+			a.setTarga(scanUser.next());
+			break;
+		case 4:
+			System.out.println("Nuovo prezzo: ");
+			a.setPrezzo(scanUser.nextFloat());
+			break;
+		case 5:
+			System.out.println("Nuovo Anno: ");
+			a.setAnno(scanUser.nextInt());
+			break;
+		case 6:
+			System.out.println("Nuovo TipoCarburante: ");
+			a.setTipoCarburante(scanUser.next());
+		case 0:
+			this.MenuPrincipale();
+		}
+		
+		g.modificaAuto(a);
 	}
 
 	private void eliminaAuto() {

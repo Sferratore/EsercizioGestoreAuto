@@ -36,12 +36,17 @@ public class GestioneAuto {
 		this.syncToFile(); //Scrivo la lista attuale nel file
 	}
 
-	
-	public void modificaAuto(String targaAuto) {
+	//Metodo che prende un'auto in input già modificata
+	public void modificaAuto(Auto a) {
 
-		Auto autoInModifica = cercaAutoPerTarga(targaAuto);
-		// Espandi menù
-		// Continua operazioni
+		for (int i = 0; i < this.listaAuto.size(); i++) {  //Cerco nelle auto
+			if (this.listaAuto.get(i).getId() == a.getId()) {  //Se l'id di una in lista combacia con l'id dell'auto modificata
+				this.eliminaAuto(this.listaAuto.get(i).getTarga()); //Elimino l'auto vecchia presente nella lista
+				this.aggiungiAuto(a); //Aggiungo l'auto (che sincronizza pure col file)
+				return;
+			}
+		}
+		
 	}
 
 	
@@ -61,9 +66,9 @@ public class GestioneAuto {
 	//Cerco un'auto nella lista e la restituisco
 	public Auto cercaAutoPerTarga(String targaAuto) {
 
-		for (int i = 0; i < listaAuto.size(); i++) {
-			if (listaAuto.get(i).getTarga().equals(targaAuto)) {
-				return listaAuto.get(i);
+		for (int i = 0; i < this.listaAuto.size(); i++) {
+			if (this.listaAuto.get(i).getTarga().equals(targaAuto)) {
+				return this.listaAuto.get(i);
 			}
 		}
 
@@ -160,8 +165,6 @@ public class GestioneAuto {
 		}
 		return true;
 	}
-	
-	
 
 	@Override
 	public String toString() {
