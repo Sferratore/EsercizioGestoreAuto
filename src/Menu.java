@@ -47,11 +47,13 @@ public class Menu {
 
 	}
 
+	//funziona aggiunta. da capire come fare id sequenziale senza metterlo a mano
 	private void aggiungiAuto() {
-		System.out.println("Menu aggiunta");
+		System.out.println("\nMenu aggiunta\n");
 		System.out.println("Inserisci dati nuova auto");
 		Auto newA = new Auto();
-		newA.setId(0);
+		System.out.print("ID: ");
+		newA.setId(scanUser.nextInt());
 		System.out.print("Marca: ");
 		newA.setMarca(scanUser.next());
 		System.out.print("Modello: ");
@@ -59,7 +61,7 @@ public class Menu {
 		System.out.print("Anno: ");
 		newA.setAnno(scanUser.nextInt());
 		System.out.print("Targa: ");
-		newA.setTarga(scanUser.next());
+		newA.setTarga(scanUser.next().toUpperCase());
 		System.out.print("Prezzo: ");
 		newA.setPrezzo(scanUser.nextFloat());
 		System.out.print("Tipo Carburante: ");
@@ -69,36 +71,53 @@ public class Menu {
 	}
 
 	private void modificaAuto() {
-		System.out.println("Menu modifica");
+		System.out.println("\nMenu modifica\n");
 		System.out.print("Inserisci targa: ");
-		g.modificaAuto(scanUser.next());
+		g.modificaAuto(scanUser.next().toUpperCase());
 		
-		
-
 	}
-
+	
+	//funziona. da gestire mancanza di corrispondenza
 	private void eliminaAuto() {
-		System.out.println("Menu elimina");
+		System.out.println("\nMenu elimina\n");
 		System.out.print("Inserisci targa: ");
-		g.eliminaAuto(scanUser.next());
+		g.eliminaAuto(scanUser.next().toUpperCase());
+		//gestire mancanza di corrispondenza
 
 	}
-
+	
+	//funziona. magari migliorare formattazione
 	private void visualizzaAuto() {
-		
+		System.out.println("\nLista Auto \n");
+		System.out.println(g.toString() + "\n");
 
 	}
-
+	
+	//funziona. anche qui gestire mancanza corrispondenza
 	private void cercaAutoTarga() {
-		System.out.println("Menu ricerca");
+		System.out.println("\nMenu ricerca\n");
 		System.out.print("Inserisci targa: ");
-		a = g.cercaAutoPerTarga(scanUser.next());
+		a = g.cercaAutoPerTarga(scanUser.next().toUpperCase());
+		if (a!=null) {
+			System.out.println("\n" + a + "\n");
+			System.out.println("1) Modifica auto");
+			System.out.println("2) Elimina auto");
+			System.out.print("Scelgi opzione: ");
+			switch (scanUser.nextInt()) {
+			case 1:
+				g.modificaAuto(a.getTarga());
+				break;
+			case 2:
+				g.eliminaAuto(a.getTarga());
+				break;
+			
+			}
+		}else {
+			System.out.println("Auto non trovata");
+		}
 		
+		a=null;
 	}
 
 }
 
-/*
- * Aggiungi auto Modifica auto Elimina auto Visualizza tutte le auto Cerca auto
- * per targa Esci
- */
