@@ -7,11 +7,13 @@ import java.util.List;
 
 public class GestioneAuto {
 
+	//Costruttore unico
 	public GestioneAuto() {
-		this.listaAuto = new ArrayList<Auto>();
-		this.syncFromFile();
+		this.syncFromFile(); //Sincronizzazione da file con inizializzazione this.listaAuto
 	}
 
+	
+	//Aggiunge auto sia alla lista attuale che al file
 	public void aggiungiAuto(Auto a) {
 		
 		// Controllando duplicato targa
@@ -30,10 +32,11 @@ public class GestioneAuto {
 					}
 				}
 		
-		this.listaAuto.add(a);
-		this.syncToFile();
+		this.listaAuto.add(a); //Aggiungo alla lista
+		this.syncToFile(); //Scrivo la lista attuale nel file
 	}
 
+	
 	public void modificaAuto(String targaAuto) {
 
 		Auto autoInModifica = cercaAutoPerTarga(targaAuto);
@@ -41,18 +44,21 @@ public class GestioneAuto {
 		// Continua operazioni
 	}
 
+	
+	//Cancello un'auto
 	public void eliminaAuto(String targaAuto) {
 
-		for (int i = 0; i < this.listaAuto.size(); i++) {
+		for (int i = 0; i < this.listaAuto.size(); i++) {  //Cerco l'auto per targa
 			if (this.listaAuto.get(i).getTarga().equals(targaAuto)) {
-				this.listaAuto.remove(i);
+				this.listaAuto.remove(i); //Rimuovo l'auto dalla lista se trovata
 			}
 		}
 
-		this.syncToFile();
+		this.syncToFile(); //Scrivo la lista attuale nel file
 
 	}
 
+	//Cerco un'auto nella lista e la restituisco
 	public Auto cercaAutoPerTarga(String targaAuto) {
 
 		for (int i = 0; i < listaAuto.size(); i++) {
@@ -64,19 +70,22 @@ public class GestioneAuto {
 		return null;
 	}
 
+	
+	//Tiro su dal file tutti i dati che contiene e li metto in this.listaAuto
 	private void syncFromFile() {
 
+		//Contiene le stringhe nel documento. Il documento è formattato in modo che ogni linea contenga un valore e che le auto siano divise da ---
 		List<String> lines;
 
 		try {
-			this.listaAuto = new ArrayList<Auto>();
-			lines = Files.readAllLines(Paths.get("auto.txt"));
-			Auto autoDaSincronizzare = null;
+			this.listaAuto = new ArrayList<Auto>();  //Inizializzo listaAuto
+			lines = Files.readAllLines(Paths.get("auto.txt")); //File di input, prendo la lista di stringhe
+			Auto autoDaSincronizzare = null; 
 
 			for (String line : lines) {
-				if (line.startsWith("Id: ")) {
+				if (line.startsWith("Id: ")) { //Se la stringa inizia per Id allora creo una nuova auto
 					autoDaSincronizzare = new Auto();
-					autoDaSincronizzare.setId(Integer.parseInt(line.split(": ")[1]));
+					autoDaSincronizzare.setId(Integer.parseInt(line.split(": ")[1])); //Splitto il tag dal valore e lo setto nell'oggetto
 				} else if (line.startsWith("Marca: ")) {
 					autoDaSincronizzare.setMarca(line.split(": ")[1]);
 				} else if (line.startsWith("Modello: ")) {
@@ -89,13 +98,13 @@ public class GestioneAuto {
 					autoDaSincronizzare.setPrezzo(Float.parseFloat(line.split(": ")[1]));
 				} else if (line.startsWith("TipoCarburante: ")) {
 					autoDaSincronizzare.setTipoCarburante(line.split(": ")[1]);
-				} else if (line.startsWith("---")) {
+				} else if (line.startsWith("---")) { //Aggiungo auto una volta finiti i valori
 					this.listaAuto.add(autoDaSincronizzare);
 				}
 			}
 
-			// Aggiungi l'ultima auto
-			if (autoDaSincronizzare != null && !this.listaAuto.contains(autoDaSincronizzare)) {
+			// Aggiungi l'ultima auto se rimasta appesa perché magari non ha "---" alla fine
+			if (autoDaSincronizzare != null && !this.listaAuto.contains(autoDaSincronizzare)) { 
 				this.listaAuto.add(autoDaSincronizzare);
 			}
 		} catch (IOException e) {
@@ -105,15 +114,17 @@ public class GestioneAuto {
 
 	}
 
+	
+	//Butto i dati della listaAuto nel file
 	private void syncToFile() {
 
 		try (FileWriter file = new FileWriter("auto.txt")) {
 			
-			file.flush(); //Pulisci il file
+			file.flush(); //Pulisce il file
 			
-			for (int i = 0; i < this.listaAuto.size(); i++) { // Memorizza tutte le auto
+			for (int i = 0; i < this.listaAuto.size(); i++) { // Gira tutte le auto
 				System.out.println("Registrando: " + this.listaAuto.get(i));
-				this.registerAuto(this.listaAuto.get(i));
+				this.registerAuto(this.listaAuto.get(i)); //Ogni auto viene registrata nel file con questo metodo, separatamente
 			}
 
 		} catch (IOException e) {
@@ -124,11 +135,13 @@ public class GestioneAuto {
 		}
 	}
 
+	
+	//Registro un'auto nel file
 	private boolean registerAuto(Auto a) {
 
-		try (FileWriter file = new FileWriter("auto.txt", true)) {
+		try (FileWriter file = new FileWriter("auto.txt", true)) {  //FileWriter viene creato con "true" per indicare un append ad un file già esistente
 
-			// Aggiungi l'auto
+			// Aggiungo l'auto
 			file.append("Id: " + a.getId() + "\n");
 			file.append("Marca: " + a.getMarca() + "\n");
 			file.append("Modello: " + a.getModello() + "\n");
