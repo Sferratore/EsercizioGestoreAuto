@@ -73,6 +73,36 @@ public class GestioneAuto {
 
 		return null;
 	}
+	
+	
+	//Cerca auto a seconda del suo campo anno. Restituisce un'arraylist con le auto
+	public ArrayList<Auto> cercaAutoPerAnno(int annoDiRicerca){
+		
+		ArrayList<Auto> result = new ArrayList<Auto>();
+		for(int i = 0; i < this.listaAuto.size(); i++) {
+			if(this.listaAuto.get(i).getAnno() == annoDiRicerca) {
+				result.add(this.listaAuto.get(i));
+			}
+		}
+		
+		return result;
+	}
+	
+	
+	//Cerca auto a seconda del suo campo anno. Restituisce un'arraylist con le auto
+		public ArrayList<Auto> filtraAutoPerPrezzo(float margineInferiore, float margineSuperiore){
+			
+			ArrayList<Auto> result = new ArrayList<Auto>();
+			for(int i = 0; i < this.listaAuto.size(); i++) {
+				if(this.listaAuto.get(i).getPrezzo() >= margineInferiore && this.listaAuto.get(i).getPrezzo() <= margineSuperiore) {
+					result.add(this.listaAuto.get(i));
+				}
+			}
+			
+			return result;
+		}
+		
+	
 
 	// Tiro su dal file tutti i dati che contiene e li metto in this.listaAuto
 	private void syncFromFile() {
