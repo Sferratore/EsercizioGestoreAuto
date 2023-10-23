@@ -33,10 +33,14 @@ public class Menu {
 			System.out.println("4) Visualizza Auto");
 
 			System.out.println("5) Cerca Auto per targa");
+			
+			System.out.println("6) Cerca Auto per anno");
+			
+			System.out.println("7) Cerca Auto per prezzo");
 
-			System.out.println("6) Esci");
+			System.out.println("0) Esci");
 
-			System.out.print("Scelgi opzione: ");
+			System.out.print("Scegli opzione: ");
 
 			switch (scanUser.nextInt()) {
 
@@ -69,8 +73,20 @@ public class Menu {
 				cercaAutoTarga();
 
 				break;
-
+			
 			case 6:
+				
+				cercaAutoAnno();
+				
+				break;
+				
+			case 7:
+				
+				cercaAutoPrezzo();
+				
+				break;
+
+			case 0:
 
 				m = false;
 
@@ -229,6 +245,33 @@ public class Menu {
 		}
 
 		a = null;
+
+	}
+	
+	
+	private void cercaAutoAnno() {
+
+		System.out.println("\nMenu ricerca\n");
+
+		System.out.print("Inserisci anno: ");
+
+		System.out.println(g.cercaAutoPerAnno(scanUser.nextInt()));
+
+	}
+	
+	private void cercaAutoPrezzo() {
+
+		float eSinistro, eDestro;
+		
+		System.out.println("\nMenu ricerca\n");
+
+		System.out.print("Inserisci il prezzo di partenza: ");
+		eSinistro = scanUser.nextFloat();
+		
+		System.out.print("Inserisci il prezzo massimo: ");
+		eDestro = scanUser.nextFloat();
+
+		System.out.println(g.filtraAutoPerPrezzo(eSinistro, eDestro));
 
 	}
 
