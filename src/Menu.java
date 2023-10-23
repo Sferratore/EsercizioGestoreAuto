@@ -21,7 +21,7 @@ public class Menu {
 			System.out.println("4) Visualizza Auto");
 			System.out.println("5) Cerca Auto per targa");
 			System.out.println("6) Esci");
-			System.out.print("Scelgi opzione: ");
+			System.out.print("Scegli opzione: ");
 			switch (scanUser.nextInt()) {
 			case 1:
 				aggiungiAuto();
@@ -118,8 +118,7 @@ public class Menu {
 	}
 
 	private void visualizzaAuto() {
-		
-
+		System.out.println(g.toString());
 	}
 
 	private void cercaAutoTarga() {

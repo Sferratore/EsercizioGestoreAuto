@@ -1,24 +1,16 @@
-Id: 4
-Marca: Marca
-Modello: Modello
-Anno: 2000
-Targa: AAAAA
-Prezzo: 33000.99
-TipoCarburante: Benzina
+Id: 2
+Marca: Auto2
+Modello: Modello2
+Anno: 2001
+Targa: SJFNIDJN
+Prezzo: 44.44
+TipoCarburante: Diesel
 ---
-Id: 5
-Marca: Marca
-Modello: Modello
-Anno: 2000
-Targa: AAB
-Prezzo: 33000.99
-TipoCarburante: Benzina
----
-Id: 1
-Marca: Marca
-Modello: Modello
-Anno: 2000
-Targa: YYY
-Prezzo: 33000.99
-TipoCarburante: Benzina
+Id: 3
+Marca: AAAA
+Modello: BBBB
+Anno: 1999
+Targa: CCCC
+Prezzo: 33.33
+TipoCarburante: DDDD
 ---
