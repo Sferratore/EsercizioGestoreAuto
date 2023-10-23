@@ -14,3 +14,11 @@ Targa: CCCC
 Prezzo: 33.33
 TipoCarburante: DDDD
 ---
+Id: 4
+Marca: Marca3
+Modello: Modello3
+Anno: 1999
+Targa: AAABBB
+Prezzo: 5.1
+TipoCarburante: Benzina
+---
